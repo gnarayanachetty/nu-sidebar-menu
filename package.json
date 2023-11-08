@@ -1,31 +1,17 @@
 {
-  "name": "vue-sidebar-menu",
+  "name": "nu-menu",
   "description": "A Vue.js Sidebar Menu Component",
-  "version": "5.2.11",
+  "version": "9.0.01",
   "author": "yaminncco <yaminncco@gmail.com>",
-  "license": "MIT",
-  "main": "dist/vue-sidebar-menu.js",
-  "module": "dist/vue-sidebar-menu.esm.js",
-  "unpkg": "dist/vue-sidebar-menu.min.js",
+  "private": true,
+  "main": "dist/nu-menu.js",
+  "module": "dist/nu-menu.esm.js",
+  "unpkg": "dist/nu-menu.min.js",
   "types": "./types/index.d.ts",
   "files": [
     "dist",
     "src",
     "types"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/yaminncco/vue-sidebar-menu.git"
-  },
-  "homepage": "https://yaminncco.github.io/vue-sidebar-menu/",
-  "keywords": [
-    "vue",
-    "vue-component",
-    "vue-sidebar",
-    "vue-sidebar-menu",
-    "sidebar",
-    "sidebar-menu",
-    "admin-sidebar"
   ],
   "scripts": {
     "dev": "cd demo && npm run dev",
@@ -39,11 +25,6 @@
       "autoprefixer": {}
     }
   },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not ie <= 8"
-  ],
   "devDependencies": {
     "@babel/core": "^7.14.6",
     "@babel/preset-env": "^7.14.7",
@@ -64,5 +45,14 @@
     "sass": "^1.35.1",
     "vue": "^3.2.39"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "engines": {
+    "node": ">= 16.0.0",
+    "npm": ">= 8.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
 }

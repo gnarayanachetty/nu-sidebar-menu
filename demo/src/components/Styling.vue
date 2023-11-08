@@ -36,7 +36,7 @@
     <prism-code lang="css">
       {{
         `@import "custom-var.scss";
-@import "vue-sidebar-menu/src/scss/vue-sidebar-menu.scss";`
+@import "nu-menu/src/scss/nu-menu.scss";`
       }}
     </prism-code>
     <h2>Slots</h2>

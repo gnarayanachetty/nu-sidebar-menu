@@ -1,7 +1,7 @@
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('vue')) :
   typeof define === 'function' && define.amd ? define(['exports', 'vue'], factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global["vue-sidebar-menu"] = {}, global.Vue));
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global["nu-menu"] = {}, global.Vue));
 })(this, (function (exports, vue) { 'use strict';
 
   var initSidebar = function initSidebar(props, context) {
@@ -1235,4 +1235,4 @@
   Object.defineProperty(exports, '__esModule', { value: true });
 
 }));
-//# sourceMappingURL=vue-sidebar-menu.js.map
+//# sourceMappingURL=nu-menu.js.map

@@ -1226,4 +1226,4 @@ var index = {
 };
 
 export { script as SidebarMenu, index as default };
-//# sourceMappingURL=vue-sidebar-menu.esm.js.map
+//# sourceMappingURL=nu-menu.esm.js.map

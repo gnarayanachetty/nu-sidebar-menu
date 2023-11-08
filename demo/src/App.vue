@@ -16,7 +16,7 @@
     <div class="demo">
       <div class="container">
         <h1>
-          vue-sidebar-menu
+          nu-menu
           <a
             style="
               color: #000;
