@@ -78,7 +78,7 @@ export default {
         {
           href: '/',
           title: 'Installation',
-          icon: faIcon({ icon: 'fa-solid fa-download' }),
+          icon: faIcon({ icon: 'fa-solid fa-download'}),
         },
         {
           href: '/basic-usage',
@@ -92,7 +92,15 @@ export default {
         {
           href: '/props',
           title: 'Props',
-          icon: faIcon({ icon: 'fa-solid fa-cogs' }),
+          icon: {
+            element: 'img',
+            class: 'menu-item-icon',
+            attributes: {
+              src: '/home-icon.svg'
+
+            },
+            text: 'Narayana'
+          },
         },
         {
           href: '/events',

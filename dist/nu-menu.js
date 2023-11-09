@@ -475,7 +475,7 @@
       return [{
         position: 'absolute'
       }, {
-        top: "".concat(mobileItemRect.value.top + mobileItemRect.value.height, "px")
+        top: "".concat(mobileItemRect.value.top, "px")
       }, !sidebarProps.rtl ? {
         left: sidebarProps.widthCollapsed
       } : {
@@ -640,16 +640,23 @@
   };
 
   function render$4(_ctx, _cache, $props, $setup, $data, $options) {
-    return (typeof $props.icon === 'object' && $props.icon.text)
-      ? (vue.openBlock(), vue.createBlock(vue.resolveDynamicComponent($props.icon.element ? $props.icon.element : 'i'), vue.normalizeProps(vue.mergeProps({ key: 0 }, $options.attributes)), {
-          default: vue.withCtx(() => [
-            vue.createTextVNode(vue.toDisplayString($props.icon.text), 1 /* TEXT */)
-          ]),
-          _: 1 /* STABLE */
-        }, 16 /* FULL_PROPS */))
-      : (typeof $props.icon === 'object')
+    return (vue.openBlock(), vue.createElementBlock(vue.Fragment, null, [
+      (typeof $props.icon === 'object' && $props.icon.text)
+        ? (vue.openBlock(), vue.createBlock(vue.resolveDynamicComponent($props.icon.element ? $props.icon.element : 'i'), vue.normalizeProps(vue.mergeProps({ key: 0 }, $options.attributes)), {
+            default: vue.withCtx(() => [
+              vue.createTextVNode(vue.toDisplayString($props.icon.text), 1 /* TEXT */)
+            ]),
+            _: 1 /* STABLE */
+          }, 16 /* FULL_PROPS */))
+        : vue.createCommentVNode("v-if", true),
+      vue.createElementVNode("p", null, vue.toDisplayString($props.icon.text), 1 /* TEXT */),
+      (typeof $props.icon === 'object' && !$props.icon.text)
         ? (vue.openBlock(), vue.createBlock(vue.resolveDynamicComponent($props.icon.element ? $props.icon.element : 'i'), vue.normalizeProps(vue.mergeProps({ key: 1 }, $options.attributes)), null, 16 /* FULL_PROPS */))
-        : (vue.openBlock(), vue.createElementBlock("i", vue.normalizeProps(vue.mergeProps({ key: 2 }, $options.attributes)), null, 16 /* FULL_PROPS */))
+        : vue.createCommentVNode("v-if", true),
+      (!typeof $props.icon == 'object')
+        ? (vue.openBlock(), vue.createElementBlock("i", vue.normalizeProps(vue.mergeProps({ key: 2 }, $options.attributes)), null, 16 /* FULL_PROPS */))
+        : vue.createCommentVNode("v-if", true)
+    ], 64 /* STABLE_FRAGMENT */))
   }
 
   script$4.render = render$4;
@@ -767,11 +774,11 @@
   };
 
   const _hoisted_1$2 = { key: 0 };
-  const _hoisted_2$2 = { class: "vsm--dropdown" };
+  const _hoisted_2$2 = { key: 0 };
+  const _hoisted_3$1 = { class: "vsm--dropdown" };
 
   function render$2(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_sidebar_menu_icon = vue.resolveComponent("sidebar-menu-icon");
-    const _component_sidebar_menu_badge = vue.resolveComponent("sidebar-menu-badge");
     const _component_sidebar_menu_item = vue.resolveComponent("sidebar-menu-item", true);
 
     return ($props.item.component && !$setup.isHidden)
@@ -799,54 +806,31 @@
                 class: $setup.linkClass
               }, $setup.linkAttrs, { onClick: $setup.onLinkClick }), {
                 default: vue.withCtx(() => [
-                  ($setup.isCollapsed && $setup.isFirstLevel)
-                    ? (vue.openBlock(), vue.createBlock(vue.Transition, {
-                        key: 0,
-                        name: "slide-animation"
-                      }, {
-                        default: vue.withCtx(() => [
-                          ($setup.hover)
-                            ? (vue.openBlock(), vue.createElementBlock("div", {
-                                key: 0,
-                                class: "vsm--mobile-bg",
-                                style: vue.normalizeStyle($setup.mobileItemBackgroundStyle)
-                              }, null, 4 /* STYLE */))
-                            : vue.createCommentVNode("v-if", true)
-                        ]),
-                        _: 1 /* STABLE */
-                      }))
-                    : vue.createCommentVNode("v-if", true),
+                  vue.createCommentVNode(" <template v-if=\"isCollapsed && isFirstLevel\">\r\n        <transition name=\"slide-animation\">\r\n          <div\r\n            v-if=\"hover\"\r\n            class=\"vsm--mobile-bg\"\r\n            :style=\"mobileItemBackgroundStyle\"\r\n          />\r\n        </transition>\r\n      </template> "),
                   ($props.item.icon)
                     ? (vue.openBlock(), vue.createBlock(_component_sidebar_menu_icon, {
-                        key: 1,
+                        key: 0,
                         icon: $props.item.icon
                       }, null, 8 /* PROPS */, ["icon"]))
                     : vue.createCommentVNode("v-if", true),
-                  vue.createElementVNode("div", {
-                    class: vue.normalizeClass([
+                  ($setup.isCollapsed && !$setup.isFirstLevel)
+                    ? (vue.openBlock(), vue.createElementBlock("div", {
+                        key: 1,
+                        class: vue.normalizeClass([
             'vsm--title',
             $setup.isCollapsed && $setup.isFirstLevel && !$setup.isMobileItem && 'vsm--title_hidden',
           ]),
-                    style: vue.normalizeStyle($setup.isMobileItem && $setup.mobileItemStyle)
-                  }, [
-                    vue.createElementVNode("span", null, vue.toDisplayString($props.item.title), 1 /* TEXT */),
-                    ($props.item.badge)
-                      ? (vue.openBlock(), vue.createBlock(_component_sidebar_menu_badge, {
-                          key: 0,
-                          badge: $props.item.badge
-                        }, null, 8 /* PROPS */, ["badge"]))
-                      : vue.createCommentVNode("v-if", true),
-                    ($setup.hasChild)
-                      ? (vue.openBlock(), vue.createElementBlock("div", {
-                          key: 1,
-                          class: vue.normalizeClass(['vsm--arrow', { 'vsm--arrow_open': $setup.show }])
-                        }, [
-                          vue.renderSlot(_ctx.$slots, "dropdown-icon", vue.normalizeProps(vue.guardReactiveProps({ isOpen: $setup.show })))
-                        ], 2 /* CLASS */))
-                      : vue.createCommentVNode("v-if", true)
-                  ], 6 /* CLASS, STYLE */)
+                        style: vue.normalizeStyle($setup.isMobileItem && $setup.mobileItemStyle)
+                      }, [
+                        ($setup.isCollapsed && !$setup.isFirstLevel)
+                          ? (vue.openBlock(), vue.createElementBlock("span", _hoisted_2$2, vue.toDisplayString($props.item.title), 1 /* TEXT */))
+                          : vue.createCommentVNode("v-if", true),
+                        vue.createCommentVNode(" <sidebar-menu-badge v-if=\"item.badge\" :badge=\"item.badge\" /> "),
+                        vue.createCommentVNode(" <div\r\n          v-if=\"hasChild\"\r\n          :class=\"['vsm--arrow', { 'vsm--arrow_open': show }]\"\r\n        >\r\n          <slot name=\"dropdown-icon\" v-bind=\"{ isOpen: show }\" />\r\n        </div> ")
+                      ], 6 /* CLASS, STYLE */))
+                    : vue.createCommentVNode("v-if", true)
                 ]),
-                _: 3 /* FORWARDED */
+                _: 1 /* STABLE */
               }, 16 /* FULL_PROPS */, ["item", "class", "onClick"])),
               ($setup.hasChild)
                 ? (vue.openBlock(), vue.createBlock(vue.Transition, {
@@ -865,7 +849,7 @@
                             class: vue.normalizeClass(['vsm--child', $setup.isMobileItem && 'vsm--child_mobile']),
                             style: vue.normalizeStyle($setup.isMobileItem && $setup.mobileItemDropdownStyle)
                           }, [
-                            vue.createElementVNode("ul", _hoisted_2$2, [
+                            vue.createElementVNode("ul", _hoisted_3$1, [
                               (vue.openBlock(true), vue.createElementBlock(vue.Fragment, null, vue.renderList($props.item.child, (subItem) => {
                                 return (vue.openBlock(), vue.createBlock(_component_sidebar_menu_item, {
                                   key: subItem.id,

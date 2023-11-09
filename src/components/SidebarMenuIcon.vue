@@ -6,12 +6,13 @@
   >
     {{ icon.text }}
   </component>
+  <p>{{ icon.text }}</p>
   <component
     :is="icon.element ? icon.element : 'i'"
-    v-else-if="typeof icon === 'object'"
+    v-if="typeof icon === 'object' && !icon.text"
     v-bind="attributes"
-  />
-  <i v-else v-bind="attributes" />
+  /> 
+  <i v-if="!typeof icon == 'object'" v-bind="attributes" />
 </template>
 
 <script>

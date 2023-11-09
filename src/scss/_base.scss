@@ -114,7 +114,16 @@
       pointer-events: none;
     }
     &_level-1 {
+      text-align: center;
+      padding: 5px 0px !important;
+      line-height: 17px !important;
+      display: block;
+      p{
+        font-size: 11px !important;
+        margin: 0px !important;
+      }
       .vsm--icon {
+        margin: 0px auto !important;
         height: $icon-height;
         width: $icon-width;
         flex-shrink: 0;

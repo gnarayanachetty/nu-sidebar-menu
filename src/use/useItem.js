@@ -237,7 +237,7 @@ export default function useItem(props) {
   const mobileItemDropdownStyle = computed(() => {
     return [
       { position: 'absolute' },
-      { top: `${mobileItemRect.value.top + mobileItemRect.value.height}px` },
+      { top: `${mobileItemRect.value.top}px` },
       !sidebarProps.rtl
         ? { left: sidebarProps.widthCollapsed }
         : { right: sidebarProps.widthCollapsed },

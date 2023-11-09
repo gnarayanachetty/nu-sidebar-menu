@@ -27,7 +27,7 @@
       v-bind="linkAttrs"
       @click="onLinkClick"
     >
-      <template v-if="isCollapsed && isFirstLevel">
+      <!-- <template v-if="isCollapsed && isFirstLevel">
         <transition name="slide-animation">
           <div
             v-if="hover"
@@ -35,23 +35,24 @@
             :style="mobileItemBackgroundStyle"
           />
         </transition>
-      </template>
+      </template> -->
       <sidebar-menu-icon v-if="item.icon" :icon="item.icon" />
       <div
+        v-if="isCollapsed && !isFirstLevel"
         :class="[
           'vsm--title',
           isCollapsed && isFirstLevel && !isMobileItem && 'vsm--title_hidden',
         ]"
         :style="isMobileItem && mobileItemStyle"
       >
-        <span>{{ item.title }}</span>
-        <sidebar-menu-badge v-if="item.badge" :badge="item.badge" />
-        <div
+        <span v-if="isCollapsed && !isFirstLevel">{{ item.title }}</span>
+        <!-- <sidebar-menu-badge v-if="item.badge" :badge="item.badge" /> -->
+        <!-- <div
           v-if="hasChild"
           :class="['vsm--arrow', { 'vsm--arrow_open': show }]"
         >
           <slot name="dropdown-icon" v-bind="{ isOpen: show }" />
-        </div>
+        </div> -->
       </div>
     </component>
     <template v-if="hasChild">

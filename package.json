@@ -1,8 +1,8 @@
 {
   "name": "nu-menu",
+  "version": "9.0.1",
   "description": "A Vue.js Sidebar Menu Component",
-  "version": "9.0.01",
-  "author": "yaminncco <yaminncco@gmail.com>",
+  "author": "nuvizz",
   "private": true,
   "main": "dist/nu-menu.js",
   "module": "dist/nu-menu.esm.js",

@@ -1,4 +1,4 @@
-import { toRefs, ref, reactive, computed, provide, inject, getCurrentInstance, watch, resolveComponent, openBlock, createElementBlock, normalizeProps, mergeProps, renderSlot, createBlock, withCtx, createElementVNode, resolveDynamicComponent, createTextVNode, toDisplayString, guardReactiveProps, toHandlers, Transition, normalizeStyle, createCommentVNode, normalizeClass, Fragment, renderList, onMounted, onUnmounted, nextTick, createVNode } from 'vue';
+import { toRefs, ref, reactive, computed, provide, inject, getCurrentInstance, watch, resolveComponent, openBlock, createElementBlock, normalizeProps, mergeProps, renderSlot, createBlock, withCtx, createElementVNode, Fragment, resolveDynamicComponent, createTextVNode, toDisplayString, createCommentVNode, guardReactiveProps, toHandlers, normalizeClass, normalizeStyle, Transition, renderList, onMounted, onUnmounted, nextTick, createVNode } from 'vue';
 
 var initSidebar = function initSidebar(props, context) {
   var _toRefs = toRefs(props),
@@ -471,7 +471,7 @@ function useItem(props) {
     return [{
       position: 'absolute'
     }, {
-      top: "".concat(mobileItemRect.value.top + mobileItemRect.value.height, "px")
+      top: "".concat(mobileItemRect.value.top, "px")
     }, !sidebarProps.rtl ? {
       left: sidebarProps.widthCollapsed
     } : {
@@ -636,16 +636,23 @@ var script$4 = {
 };
 
 function render$4(_ctx, _cache, $props, $setup, $data, $options) {
-  return (typeof $props.icon === 'object' && $props.icon.text)
-    ? (openBlock(), createBlock(resolveDynamicComponent($props.icon.element ? $props.icon.element : 'i'), normalizeProps(mergeProps({ key: 0 }, $options.attributes)), {
-        default: withCtx(() => [
-          createTextVNode(toDisplayString($props.icon.text), 1 /* TEXT */)
-        ]),
-        _: 1 /* STABLE */
-      }, 16 /* FULL_PROPS */))
-    : (typeof $props.icon === 'object')
+  return (openBlock(), createElementBlock(Fragment, null, [
+    (typeof $props.icon === 'object' && $props.icon.text)
+      ? (openBlock(), createBlock(resolveDynamicComponent($props.icon.element ? $props.icon.element : 'i'), normalizeProps(mergeProps({ key: 0 }, $options.attributes)), {
+          default: withCtx(() => [
+            createTextVNode(toDisplayString($props.icon.text), 1 /* TEXT */)
+          ]),
+          _: 1 /* STABLE */
+        }, 16 /* FULL_PROPS */))
+      : createCommentVNode("v-if", true),
+    createElementVNode("p", null, toDisplayString($props.icon.text), 1 /* TEXT */),
+    (typeof $props.icon === 'object' && !$props.icon.text)
       ? (openBlock(), createBlock(resolveDynamicComponent($props.icon.element ? $props.icon.element : 'i'), normalizeProps(mergeProps({ key: 1 }, $options.attributes)), null, 16 /* FULL_PROPS */))
-      : (openBlock(), createElementBlock("i", normalizeProps(mergeProps({ key: 2 }, $options.attributes)), null, 16 /* FULL_PROPS */))
+      : createCommentVNode("v-if", true),
+    (!typeof $props.icon == 'object')
+      ? (openBlock(), createElementBlock("i", normalizeProps(mergeProps({ key: 2 }, $options.attributes)), null, 16 /* FULL_PROPS */))
+      : createCommentVNode("v-if", true)
+  ], 64 /* STABLE_FRAGMENT */))
 }
 
 script$4.render = render$4;
@@ -763,11 +770,11 @@ var script$2 = {
 };
 
 const _hoisted_1$2 = { key: 0 };
-const _hoisted_2$2 = { class: "vsm--dropdown" };
+const _hoisted_2$2 = { key: 0 };
+const _hoisted_3$1 = { class: "vsm--dropdown" };
 
 function render$2(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_sidebar_menu_icon = resolveComponent("sidebar-menu-icon");
-  const _component_sidebar_menu_badge = resolveComponent("sidebar-menu-badge");
   const _component_sidebar_menu_item = resolveComponent("sidebar-menu-item", true);
 
   return ($props.item.component && !$setup.isHidden)
@@ -795,54 +802,31 @@ function render$2(_ctx, _cache, $props, $setup, $data, $options) {
               class: $setup.linkClass
             }, $setup.linkAttrs, { onClick: $setup.onLinkClick }), {
               default: withCtx(() => [
-                ($setup.isCollapsed && $setup.isFirstLevel)
-                  ? (openBlock(), createBlock(Transition, {
-                      key: 0,
-                      name: "slide-animation"
-                    }, {
-                      default: withCtx(() => [
-                        ($setup.hover)
-                          ? (openBlock(), createElementBlock("div", {
-                              key: 0,
-                              class: "vsm--mobile-bg",
-                              style: normalizeStyle($setup.mobileItemBackgroundStyle)
-                            }, null, 4 /* STYLE */))
-                          : createCommentVNode("v-if", true)
-                      ]),
-                      _: 1 /* STABLE */
-                    }))
-                  : createCommentVNode("v-if", true),
+                createCommentVNode(" <template v-if=\"isCollapsed && isFirstLevel\">\r\n        <transition name=\"slide-animation\">\r\n          <div\r\n            v-if=\"hover\"\r\n            class=\"vsm--mobile-bg\"\r\n            :style=\"mobileItemBackgroundStyle\"\r\n          />\r\n        </transition>\r\n      </template> "),
                 ($props.item.icon)
                   ? (openBlock(), createBlock(_component_sidebar_menu_icon, {
-                      key: 1,
+                      key: 0,
                       icon: $props.item.icon
                     }, null, 8 /* PROPS */, ["icon"]))
                   : createCommentVNode("v-if", true),
-                createElementVNode("div", {
-                  class: normalizeClass([
+                ($setup.isCollapsed && !$setup.isFirstLevel)
+                  ? (openBlock(), createElementBlock("div", {
+                      key: 1,
+                      class: normalizeClass([
           'vsm--title',
           $setup.isCollapsed && $setup.isFirstLevel && !$setup.isMobileItem && 'vsm--title_hidden',
         ]),
-                  style: normalizeStyle($setup.isMobileItem && $setup.mobileItemStyle)
-                }, [
-                  createElementVNode("span", null, toDisplayString($props.item.title), 1 /* TEXT */),
-                  ($props.item.badge)
-                    ? (openBlock(), createBlock(_component_sidebar_menu_badge, {
-                        key: 0,
-                        badge: $props.item.badge
-                      }, null, 8 /* PROPS */, ["badge"]))
-                    : createCommentVNode("v-if", true),
-                  ($setup.hasChild)
-                    ? (openBlock(), createElementBlock("div", {
-                        key: 1,
-                        class: normalizeClass(['vsm--arrow', { 'vsm--arrow_open': $setup.show }])
-                      }, [
-                        renderSlot(_ctx.$slots, "dropdown-icon", normalizeProps(guardReactiveProps({ isOpen: $setup.show })))
-                      ], 2 /* CLASS */))
-                    : createCommentVNode("v-if", true)
-                ], 6 /* CLASS, STYLE */)
+                      style: normalizeStyle($setup.isMobileItem && $setup.mobileItemStyle)
+                    }, [
+                      ($setup.isCollapsed && !$setup.isFirstLevel)
+                        ? (openBlock(), createElementBlock("span", _hoisted_2$2, toDisplayString($props.item.title), 1 /* TEXT */))
+                        : createCommentVNode("v-if", true),
+                      createCommentVNode(" <sidebar-menu-badge v-if=\"item.badge\" :badge=\"item.badge\" /> "),
+                      createCommentVNode(" <div\r\n          v-if=\"hasChild\"\r\n          :class=\"['vsm--arrow', { 'vsm--arrow_open': show }]\"\r\n        >\r\n          <slot name=\"dropdown-icon\" v-bind=\"{ isOpen: show }\" />\r\n        </div> ")
+                    ], 6 /* CLASS, STYLE */))
+                  : createCommentVNode("v-if", true)
               ]),
-              _: 3 /* FORWARDED */
+              _: 1 /* STABLE */
             }, 16 /* FULL_PROPS */, ["item", "class", "onClick"])),
             ($setup.hasChild)
               ? (openBlock(), createBlock(Transition, {
@@ -861,7 +845,7 @@ function render$2(_ctx, _cache, $props, $setup, $data, $options) {
                           class: normalizeClass(['vsm--child', $setup.isMobileItem && 'vsm--child_mobile']),
                           style: normalizeStyle($setup.isMobileItem && $setup.mobileItemDropdownStyle)
                         }, [
-                          createElementVNode("ul", _hoisted_2$2, [
+                          createElementVNode("ul", _hoisted_3$1, [
                             (openBlock(true), createElementBlock(Fragment, null, renderList($props.item.child, (subItem) => {
                               return (openBlock(), createBlock(_component_sidebar_menu_item, {
                                 key: subItem.id,
